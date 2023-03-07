@@ -1,7 +1,10 @@
 import React from "react";
+import style from './Activities_List.module.scss';
+import Activity from "./Activity/Activity";
+import { ITask } from "../../models/ITask";
 
 function ActivitiesList() {
-    const task = [{
+    const task: ITask[] = [{
         name: 'React',
         time: '02:00:00'
     },{
@@ -12,14 +15,11 @@ function ActivitiesList() {
         time: '01:30:00'
     }]
     return (
-        <aside>
+        <aside className={style.listaTarefas}>
             <h2> Estudos do Dia </h2>
             <ul>
                 {task.map((task, index) => (
-                    <li key={index}>
-                        <h3>{task.name}</h3>
-                        <span>{task.time}</span>
-                    </li>    
+                    <Activity key={index} {...task}/>  
                 ))}
             </ul>
         </aside>
