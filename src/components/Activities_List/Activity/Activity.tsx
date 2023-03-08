@@ -1,4 +1,4 @@
-import { ITask } from '../../../models/ITask';
+import ITask from '../../../models/ITask';
 import style from '../Activities_List.module.scss';
 
 

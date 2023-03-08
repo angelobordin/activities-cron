@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import style from './Activities_List.module.scss';
 import Activity from "./Activity/Activity";
-import { ITask } from "../../models/ITask";
+import ITask from "../../models/ITask";
 
 function ActivitiesList() {
-    const task: ITask[] = [{
+    const [tasks, setTasks] = useState([{
         name: 'React',
         time: '02:00:00'
     },{
@@ -13,12 +13,14 @@ function ActivitiesList() {
     },{
         name: 'TypeScript',
         time: '01:30:00'
-    }]
+    }])
     return (
         <aside className={style.listaTarefas}>
-            <h2> Estudos do Dia </h2>
+            <h2 onClick={() => {
+                setTasks([...tasks, { name: 'Estudar State', time: '05:00:00' }])
+            }}> Estudos do Dia </h2>
             <ul>
-                {task.map((task, index) => (
+                {tasks.map((task, index) => (
                     <Activity key={index} {...task}/>  
                 ))}
             </ul>
