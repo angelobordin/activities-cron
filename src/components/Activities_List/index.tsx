@@ -3,17 +3,17 @@ import Activity from "./Activity/Activity";
 import ITask from "../../types/ITask";
 
 interface ITasksProp {
-    tasksProp: ITask[]
+    tasksProp: ITask[],
+    selectTask: (selectdTask: ITask) => void
 }
 
-function ActivitiesList(tasks: ITasksProp) {
-    const taskList = tasks.tasksProp;
+function ActivitiesList({ tasksProp, selectTask }: ITasksProp) {
     return (
         <aside className={style.listaTarefas}>
             <h2> Estudos do Dia </h2>
             <ul>
-                {taskList.map((task, index) => (
-                    <Activity key={index} {...task}/>  
+                {tasksProp.map(task => (
+                    <Activity selectTask={selectTask} key={task.id} {...task}/>  
                 ))}
             </ul>
         </aside>
