@@ -6,10 +6,11 @@ import Clock from "./Clock";
 import style from './Cron.module.scss';
 
 interface IProps {
-    selected: ITask | undefined
+    selected: ITask | undefined,
+    completeTask: () => void
 }
 
-export default function Cron({selected}: IProps) {
+export default function Cron({ selected, completeTask }: IProps) {
     const [time, setTime] = useState<number>();
 
     useEffect(() => {
@@ -22,6 +23,8 @@ export default function Cron({selected}: IProps) {
                 setTime(cont - 1);
                 return regressiva(cont - 1);
             };
+
+            completeTask();
         }, 1000);
     };
 

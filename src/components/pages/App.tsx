@@ -17,11 +17,28 @@ function App() {
     })));
   };
 
+  function completeTask() {
+    if (selected) {
+      setSelected(undefined);
+      setTasks(oldTasksInState => oldTasksInState.map(task => {
+        if (task.id === selected.id) {
+           return {
+            ...task,
+            selected: false,
+            completed: true
+           }
+        }
+
+        return task;
+      }))
+    }
+  }
+
   return (
     <div className={style.AppStyle}>
       <Form setTasks={setTasks} />
       <ActivitiesList tasksProp={tasks} selectTask={selectTask}/>
-      <Cron selected={selected}/>
+      <Cron selected={selected} completeTask={completeTask}/>
     </div>
   );
 }
